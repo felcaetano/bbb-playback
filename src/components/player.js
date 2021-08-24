@@ -26,6 +26,7 @@ import {
   LAYOUT,
 } from 'utils/constants';
 import {
+  buildFileURL,
   getActiveContent,
   getCurrentDataIndex,
   getCurrentDataInterval,
@@ -113,6 +114,8 @@ export default class Player extends PureComponent {
     this.panzooms = getData(data, ID.PANZOOMS);
     this.screenshare = getData(data, ID.SCREENSHARE);
     this.shapes = getData(data, ID.SHAPES);
+
+    this.downloadLink = getData(data, ID.DOWNLOADLINK);
 
     this.canvases = this.shapes.canvases;
     this.slides = this.shapes.slides;
@@ -347,6 +350,36 @@ export default class Player extends PureComponent {
     );
   }
 
+  renderDownloadIcon() {
+    const { intl } = this.props;
+
+    const {
+      name,
+      start,
+    } = this.metadata;
+    
+    var downloadurl = "";
+    if (!this.downloadLink || this.downloadLink.length === 0)
+      downloadurl = buildFileURL(this.metadata.id, 'video/webcams.mp4');
+    else
+      downloadurl = this.downloadLink;
+
+      return (
+        <a
+          href={downloadurl}
+          download={`${name} - ${intl.formatDate(start)}`}
+        >
+   
+          <div
+            className={'application-icon'}
+          >
+            <span className={'icon-download'} />
+          </div>
+        </a>
+      );
+    
+  }
+
   renderApplicationIcon(type) {
     const { application } = this.state;
     const active = application === type;
@@ -395,6 +428,8 @@ export default class Player extends PureComponent {
       <div className="application-control">
         {this.renderApplicationIcon(ID.CHAT)}
         {this.renderApplicationIcon(ID.NOTES)}
+        {this.renderDownloadIcon()}
+        
       </div>
     );
   }
@@ -402,6 +437,7 @@ export default class Player extends PureComponent {
   renderApplication() {
     return (
       <div className="application">
+        
         {this.renderApplicationControl()}
         {this.renderApplicationContent()}
       </div>

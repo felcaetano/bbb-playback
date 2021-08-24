@@ -169,6 +169,7 @@ const getData = (data, id) => {
     case ID.CAPTIONS:
     case ID.CHAT:
     case ID.CURSOR:
+    case ID.DOWNLOADLINK:
     case ID.NOTES:
     case ID.PANZOOMS:
     case ID.POLLS:

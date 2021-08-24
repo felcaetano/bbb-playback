@@ -1,7 +1,7 @@
 {
   "name": "bbb-playback",
   "version": "2.3.0",
-  "homepage": "/playback/presentation/2.3",
+  "homepage": "",
   "dependencies": {
     "classnames": "^2.3.1",
     "linkifyjs": "^2.1.9",

@@ -23,6 +23,7 @@ const ID = {
   CHAT: 'chat',
   CURSOR: 'cursor',
   DESKSHARE: 'deskshare',
+  DOWNLOADLINK : 'meeting',
   ERROR: 'error',
   LOADER: 'loader',
   METADATA: 'metadata',

@@ -58,6 +58,10 @@ const Loader = ({ match }) => {
       if (response.ok) {
         logger.debug(ID.LOADER, file, response);
         const fileType = getFileType(file);
+    
+        if (medias.includes(fileType))
+          return url;
+    
         switch (fileType) {
           case 'json':
             return response.json();

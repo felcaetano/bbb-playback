@@ -1,5 +1,8 @@
 import { parseStringPromise } from 'xml2js';
-import { files as config } from 'config';
+import {
+  files as config,
+  medias
+} from 'config';
 import { getFileType } from './data';
 import {
   hasProperty,
@@ -73,6 +76,17 @@ const buildAlternates = result => {
 
   return data;
 };
+
+// TODO
+const buildDownload = result => {
+  if (!result) return [];
+
+  let data = [];
+  data = result;
+
+  return data;
+};
+
 
 // TODO
 const buildCaptions = result => {
@@ -470,8 +484,11 @@ const build = (filename, value) => {
   return new Promise((resolve, reject) => {
     let data;
     const fileType = getFileType(filename);
-
-    if (fileType === 'json') {
+    
+    if (medias.includes(fileType)) {
+      data = buildDownload(value);
+      resolve(data);
+    } else if (fileType === 'json') {
       switch (filename) {
         case config.data.alternates:
           data = buildAlternates(value);

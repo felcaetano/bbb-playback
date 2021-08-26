@@ -360,6 +360,7 @@ export default class Player extends PureComponent {
     
     var downloadurl = "";
     var tipo = "";
+    var filename = name.replace(/\./g, '-');
     if (!this.downloadLink || this.downloadLink.length === 0) {
       downloadurl = buildFileURL(this.metadata.id, 'video/webcams.mp4');
       tipo = "(webcams)";
@@ -370,7 +371,7 @@ export default class Player extends PureComponent {
       return (
         <a
           href={downloadurl}
-          download={`${name} - ${intl.formatDate(start)} - ${tipo}`}
+          download={`${filename} - ${intl.formatDate(start)} - ${tipo}`}
         >
    
           <div
